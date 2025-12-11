@@ -1,0 +1,6 @@
+mem0ai 
+dotenv
+jinja2
+rouge_score
+bert_score 
+sentence_transformers

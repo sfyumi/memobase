@@ -44,7 +44,7 @@ class MemoBaseClient:
             headers={
                 "Authorization": f"Bearer {self.api_key}",
             },
-            timeout=60,
+            timeout=180,
         )
 
     @property
