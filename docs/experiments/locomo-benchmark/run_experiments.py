@@ -50,6 +50,10 @@ def main():
     parser.add_argument(
         "--num_chunks", type=int, default=1, help="Number of chunks to process"
     )
+    
+    parser.add_argument(
+        "--exclude_category", type=int, nargs="+", default={5}, help="Category to exclude"
+    )
 
     args = parser.parse_args()
 
@@ -124,7 +128,7 @@ def main():
             memobase_manager.process_all_conversations(max_workers=10, max_samples=max_samples)
         elif args.method == "search":
             memobase_manager = MemobaseSearch()
-            memobase_manager.process_data_file("dataset/locomo10.json", max_samples=max_samples)
+            memobase_manager.process_data_file("dataset/locomo10.json", exclude_category=args.exclude_category, max_samples=max_samples)
     else:
         raise ValueError(f"Invalid technique type: {args.technique_type}")
 
