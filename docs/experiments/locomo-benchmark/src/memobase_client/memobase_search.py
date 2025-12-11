@@ -144,9 +144,11 @@ class MemobaseSearch:
 
         return result
 
-    def process_data_file(self, file_path, exclude_category={5}):
+    def process_data_file(self, file_path, exclude_category={5}, max_samples=None):
         with open(file_path, "r") as f:
             data = json.load(f)
+        if max_samples:
+            data = data[:max_samples]
         for idx, item in tqdm(
             enumerate(data), total=len(data), desc="Processing conversations"
         ):

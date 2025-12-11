@@ -118,12 +118,13 @@ def main():
     elif args.technique_type == "memobase":
         from src.memobase_client import MemobaseADD, MemobaseSearch
 
+        max_samples = 1
         if args.method == "add":
             memobase_manager = MemobaseADD(data_path="dataset/locomo10.json")
-            memobase_manager.process_all_conversations()
+            memobase_manager.process_all_conversations(max_workers=10, max_samples=max_samples)
         elif args.method == "search":
             memobase_manager = MemobaseSearch()
-            memobase_manager.process_data_file("dataset/locomo10.json")
+            memobase_manager.process_data_file("dataset/locomo10.json", max_samples=max_samples)
     else:
         raise ValueError(f"Invalid technique type: {args.technique_type}")
 
