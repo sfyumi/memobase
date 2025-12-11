@@ -378,7 +378,7 @@ class User:
         if max_subtopic_size:
             params += f"&max_subtopic_size={max_subtopic_size}"
         if topic_limits:
-            params += f"&topic_limits_json={json.dumps(topic_limits)}"
+            params += f"&topic_limits_json={quote_plus(json.dumps(topic_limits))}"
         if profile_event_ratio:
             params += f"&profile_event_ratio={profile_event_ratio}"
         if time_range_in_days:
@@ -393,7 +393,7 @@ class User:
                     OpenAICompatibleMessage(**c)
                 except ValidationError as e:
                     raise ValueError(f"Invalid chat message: {e}")
-            chats_query = f"&chats_str={json.dumps(chats, ensure_ascii=False)}"
+            chats_query = f"&chats_str={quote_plus(json.dumps(chats, ensure_ascii=False))}"
             params += chats_query
         if event_similarity_threshold:
             params += f"&event_similarity_threshold={event_similarity_threshold}"
